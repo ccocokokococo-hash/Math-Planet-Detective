@@ -1,102 +1,84 @@
-<!DOCTYPE html>
-<html lang="kk">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Прогресс аналитикасы</title>
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
+.live-form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
 
-  <div class="nebula nebula-1"></div>
-  <div class="nebula nebula-2"></div>
+.positive {
+  color: var(--green);
+  font-weight: 900;
+}
 
-  <header class="topbar">
-    <a href="index.html" class="logo">
-      <span class="logo-icon">🪐</span>
-      <span>Math Planet Detective</span>
-    </a>
+.negative {
+  color: #ff6b8a;
+  font-weight: 900;
+}
 
-    <nav>
-      <a href="index.html">Басты бет</a>
-      <a href="teacher.html">Мұғалім</a>
-      <a href="planets.html">Планеталар</a>
-    </nav>
-  </header>
+.leaderboard {
+  display: grid;
+  gap: 14px;
+}
 
-  <main class="container">
+.rank-card {
+  display: grid;
+  grid-template-columns: 60px 1fr 90px;
+  align-items: center;
+  gap: 16px;
+  padding: 18px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid var(--line);
+}
 
-    <section class="page-title">
-      <span class="tag">Progress Analytics</span>
-      <h1>Оқу прогресі</h1>
-      <p>Жобаға дейінгі және кейінгі көрсеткіштерді визуалды көрсету.</p>
-    </section>
+.rank-card:first-child {
+  background: linear-gradient(135deg, rgba(255, 209, 102, 0.24), rgba(255, 111, 216, 0.12));
+}
 
-    <section class="stats-grid">
-      <div class="stat-card">
-        <span>Қызығушылық</span>
-        <b>+42%</b>
-      </div>
+.place {
+  font-size: 34px;
+}
 
-      <div class="stat-card">
-        <span>Белсенділік</span>
-        <b>+38%</b>
-      </div>
+.rank-card p {
+  margin: 4px 0 0;
+}
 
-      <div class="stat-card">
-        <span>Логика</span>
-        <b>+27%</b>
-      </div>
+.rank-card strong {
+  font-size: 26px;
+  color: var(--gold);
+  text-align: right;
+}
 
-      <div class="stat-card">
-        <span>Дәлдік</span>
-        <b>+31%</b>
-      </div>
-    </section>
+.mini-action {
+  border: none;
+  cursor: pointer;
+  padding: 7px 9px;
+  margin: 2px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
 
-    <section class="panel">
-      <h2>Before / After</h2>
+.mini-action.delete {
+  background: rgba(255, 107, 138, 0.2);
+}
 
-      <div class="chart">
-        <div class="bar">
-          <span>Жобаға дейін</span>
-          <div><i style="width:52%"></i></div>
-          <b>52%</b>
-        </div>
+@media (max-width: 900px) {
+  .live-form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
-        <div class="bar">
-          <span>Жобадан кейін</span>
-          <div><i style="width:86%"></i></div>
-          <b>86%</b>
-        </div>
-      </div>
-    </section>
+@media (max-width: 640px) {
+  .live-form {
+    grid-template-columns: 1fr;
+  }
 
-    <section class="panel">
-      <h2>Тақырыптар динамикасы</h2>
+  .rank-card {
+    grid-template-columns: 44px 1fr;
+  }
 
-      <div class="chart">
-        <div class="bar">
-          <span>Қосу</span>
-          <div><i style="width:92%"></i></div>
-          <b>92%</b>
-        </div>
-
-        <div class="bar">
-          <span>Бөлу</span>
-          <div><i style="width:71%"></i></div>
-          <b>71%</b>
-        </div>
-
-        <div class="bar">
-          <span>Логика</span>
-          <div><i style="width:68%"></i></div>
-          <b>68%</b>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-</body>
-</html>
+  .rank-card strong {
+    grid-column: 2;
+    text-align: left;
+  }
+}
