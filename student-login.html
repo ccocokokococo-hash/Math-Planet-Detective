@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Оқушы кіруі</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="nebula nebula-1"></div>
+  <div class="nebula nebula-2"></div>
+
+  <header class="topbar">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">🪐</span>
+      <span>Math Planet Detective</span>
+    </a>
+
+    <nav>
+      <a href="index.html">Басты бет</a>
+      <a href="planets.html">Планеталар</a>
+      <a href="teacher.html">Мұғалім</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <section class="page-title">
+      <span class="tag">Student Login</span>
+      <h1>Ғарыш детективі ретінде кіру</h1>
+      <p>
+        Миссияны бастау үшін атыңды жаз, сыныбыңды таңда және өз аватарыңды белгіле.
+      </p>
+    </section>
+
+    <section class="student-login-card">
+
+      <div class="login-visual">
+        <div class="login-avatar" id="selectedAvatar">🕵️‍♀️</div>
+        <h2>Сенің детектив профилің</h2>
+        <p>Атың енгізілгеннен кейін сайт сені жеке оқушы ретінде таниды.</p>
+      </div>
+
+      <div class="login-form-panel">
+        <label>Оқушының аты</label>
+        <input type="text" id="loginStudentName" placeholder="Мысалы: Аружан" />
+
+        <label>Сынып</label>
+        <select id="loginClass">
+          <option value="4 А">4 А</option>
+          <option value="4 Ә">4 Ә</option>
+          <option value="4 Б">4 Б</option>
+          <option value="4 В">4 В</option>
+        </select>
+
+        <label>Деңгей</label>
+        <select id="loginLevel">
+          <option value="Easy">Easy</option>
+          <option value="Medium">Medium</option>
+          <option value="Pro">Pro</option>
+        </select>
+
+        <label>Аватар таңда</label>
+        <div class="avatar-picker">
+          <button type="button" class="avatar-option active" data-avatar="🕵️‍♀️">🕵️‍♀️</button>
+          <button type="button" class="avatar-option" data-avatar="🕵️‍♂️">🕵️‍♂️</button>
+          <button type="button" class="avatar-option" data-avatar="👩‍🚀">👩‍🚀</button>
+          <button type="button" class="avatar-option" data-avatar="👨‍🚀">👨‍🚀</button>
+          <button type="button" class="avatar-option" data-avatar="🤖">🤖</button>
+          <button type="button" class="avatar-option" data-avatar="🦸‍♀️">🦸‍♀️</button>
+        </div>
+
+        <button class="btn primary full" id="startStudentMission">
+          🚀 Миссияны бастау
+        </button>
+
+        <button class="btn ghost full" id="clearStudentProfile">
+          🗑 Профильді тазалау
+        </button>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+    let selectedAvatar = "🕵️‍♀️";
+
+    const avatarButtons = document.querySelectorAll(".avatar-option");
+    const selectedAvatarBox = document.getElementById("selectedAvatar");
+
+    avatarButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        avatarButtons.forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+
+        selectedAvatar = button.dataset.avatar;
+        selectedAvatarBox.textContent = selectedAvatar;
+      });
+    });
+
+    document.getElementById("startStudentMission").addEventListener("click", () => {
+      const name = document.getElementById("loginStudentName").value.trim();
+      const studentClass = document.getElementById("loginClass").value;
+      const level = document.getElementById("loginLevel").value;
+
+      if (name === "") {
+        alert("Алдымен оқушының атын жазыңыз.");
+        return;
+      }
+
+      const studentProfile = {
+        name: name,
+        className: studentClass,
+        level: level,
+        avatar: selectedAvatar,
+        stars: 0,
+        badges: 0,
+        missions: 0
+      };
+
+      localStorage.setItem("currentStudentProfile", JSON.stringify(studentProfile));
+
+      window.location.href = "student.html";
+    });
+
+    document.getElementById("clearStudentProfile").addEventListener("click", () => {
+      localStorage.removeItem("currentStudentProfile");
+      alert("Оқушы профилі тазаланды.");
+    });
+  </script>
+
+</body>
+</html>
