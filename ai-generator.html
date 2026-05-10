@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI тапсырма генераторы</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="nebula nebula-1"></div>
+  <div class="nebula nebula-2"></div>
+
+  <header class="topbar">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">🪐</span>
+      <span>Math Planet Detective</span>
+    </a>
+
+    <nav>
+      <a href="teacher.html">Мұғалім</a>
+      <a href="mentor.html">Тәлімгер</a>
+      <a href="mission.html">Миссия</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <section class="page-title">
+      <span class="tag">AI Task Generator</span>
+      <h1>AI тапсырма генераторы</h1>
+      <p>
+        Тақырып, деңгей және формат бойынша тапсырма жасайтын демонстрациялық AI-прототип.
+      </p>
+    </section>
+
+    <section class="two-column">
+
+      <div class="panel">
+        <h2>Параметрлер</h2>
+
+        <label>Тақырып</label>
+        <select id="topic">
+          <option value="addition">Қосу</option>
+          <option value="subtraction">Азайту</option>
+          <option value="multiplication">Көбейту</option>
+          <option value="division">Бөлу</option>
+          <option value="logic">Логика</option>
+          <option value="geometry">Геометрия</option>
+          <option value="measure">Өлшемдер</option>
+          <option value="time">Уақыт</option>
+          <option value="money">Ақша</option>
+        </select>
+
+        <label>Деңгей</label>
+        <select id="level">
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="pro">Pro</option>
+        </select>
+
+        <label>Тапсырма түрі</label>
+        <select id="type">
+          <option value="classic">Қарапайым есеп</option>
+          <option value="story">Мәтіндік есеп</option>
+          <option value="detective">Детектив жұмбақ</option>
+          <option value="code">Құпия код</option>
+        </select>
+
+        <button class="btn primary full" id="generateBtn">✨ Тапсырма жасау</button>
+      </div>
+
+      <div class="panel">
+        <h2>Нәтиже</h2>
+
+        <div class="result-box" id="output">
+          Параметр таңдап, “Тапсырма жасау” батырмасын басыңыз.
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="js/generator.js"></script>
+</body>
+</html>
