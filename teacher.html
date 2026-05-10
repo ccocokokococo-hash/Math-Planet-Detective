@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Мұғалім кабинеті</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="nebula nebula-1"></div>
+  <div class="nebula nebula-2"></div>
+
+  <header class="topbar">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">🪐</span>
+      <span>Math Planet Detective</span>
+    </a>
+
+    <nav>
+      <a href="index.html">Басты бет</a>
+      <a href="ai-generator.html">AI генератор</a>
+      <a href="mentor.html">Тәлімгер</a>
+      <a href="young-teacher.html">Жас маман</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <section class="page-title">
+      <span class="tag">Teacher Dashboard</span>
+      <h1>Мұғалім кабинеті</h1>
+      <p>
+        Сынып диагностикасы, оқушы деңгейі, AI ұсыныс және сабақтағы
+        белсенділік мониторингі.
+      </p>
+    </section>
+
+    <section class="stats-grid">
+      <div class="stat-card">
+        <span>Сынып</span>
+        <b>4 “А”</b>
+      </div>
+
+      <div class="stat-card">
+        <span>Оқушы саны</span>
+        <b>24</b>
+      </div>
+
+      <div class="stat-card">
+        <span>Орташа нәтиже</span>
+        <b>82%</b>
+      </div>
+
+      <div class="stat-card">
+        <span>Белсенділік</span>
+        <b>+38%</b>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Оқушылар диагностикасы</h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Оқушы</th>
+              <th>Деңгей</th>
+              <th>Жұлдыз</th>
+              <th>Күшті тақырып</th>
+              <th>Қиындық</th>
+              <th>Белсенділік</th>
+              <th>AI ұсыныс</th>
+            </tr>
+          </thead>
+          <tbody id="studentTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Тақырып бойынша аналитика</h2>
+
+      <div class="chart">
+        <div class="bar">
+          <span>Қосу</span>
+          <div><i style="width:92%"></i></div>
+          <b>92%</b>
+        </div>
+
+        <div class="bar">
+          <span>Көбейту</span>
+          <div><i style="width:78%"></i></div>
+          <b>78%</b>
+        </div>
+
+        <div class="bar">
+          <span>Бөлу</span>
+          <div><i style="width:66%"></i></div>
+          <b>66%</b>
+        </div>
+
+        <div class="bar">
+          <span>Логика</span>
+          <div><i style="width:58%"></i></div>
+          <b>58%</b>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>AI әдістемелік ұсынысы</h2>
+
+      <div class="ai-note">
+        Келесі сабақта “Логика планетасы” бойынша 3 деңгейлі квест өткізу ұсынылады:
+        Easy — қатарды жалғастыру, Medium — артық санды табу, Pro — құпия код құрастыру.
+        Пассив оқушыларға “clue keeper” рөлін беріңіз.
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
