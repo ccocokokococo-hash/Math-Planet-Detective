@@ -807,3 +807,122 @@ label {
     grid-template-columns: 1fr;
   }
 }
+.student-login-card {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 24px;
+  align-items: stretch;
+  padding: 30px;
+  margin: 30px 0 70px;
+  border-radius: var(--radius);
+  background: var(--glass);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(22px);
+  box-shadow: var(--shadow);
+}
+
+.login-visual,
+.login-form-panel {
+  padding: 26px;
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--line);
+}
+
+.login-avatar {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 20px;
+  border-radius: 48px;
+  display: grid;
+  place-items: center;
+  font-size: 84px;
+  background: linear-gradient(135deg, rgba(102, 232, 255, 0.32), rgba(255, 111, 216, 0.32));
+  border: 1px solid var(--line);
+  box-shadow: 0 0 50px rgba(102, 232, 255, 0.18);
+}
+
+.avatar-picker {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  margin: 10px 0 16px;
+}
+
+.avatar-option {
+  height: 56px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.09);
+  color: #fff;
+  font-size: 26px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.avatar-option:hover,
+.avatar-option.active {
+  transform: translateY(-3px);
+  background: rgba(102, 232, 255, 0.22);
+  box-shadow: 0 0 24px rgba(102, 232, 255, 0.18);
+}
+
+.student-profile-panel {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 28px;
+  align-items: center;
+  padding: 30px;
+  margin: 42px 0 28px;
+  border-radius: var(--radius);
+  background: var(--glass);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(22px);
+  box-shadow: var(--shadow);
+}
+
+.student-avatar-big {
+  width: 180px;
+  height: 180px;
+  border-radius: 50px;
+  display: grid;
+  place-items: center;
+  font-size: 86px;
+  background: linear-gradient(135deg, rgba(102, 232, 255, 0.32), rgba(255, 111, 216, 0.32));
+  border: 1px solid var(--line);
+}
+
+.current-student-mini {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid var(--line);
+}
+
+.current-student-mini span {
+  font-size: 28px;
+}
+
+.current-student-mini small {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.current-student-mini b {
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .student-login-card,
+  .student-profile-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .avatar-picker {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
