@@ -79,6 +79,19 @@ function renderClues() {
 }
 
 function finishMission() {
+  const currentProfile = JSON.parse(localStorage.getItem("currentStudentProfile"));
+
+  if (currentProfile) {
+    currentProfile.stars = (currentProfile.stars || 0) + stars;
+    currentProfile.missions = (currentProfile.missions || 0) + 1;
+
+    if (correctCount >= 4) {
+      currentProfile.badges = (currentProfile.badges || 0) + 1;
+    }
+
+    localStorage.setItem("currentStudentProfile", JSON.stringify(currentProfile));
+  }
+
   questionText.textContent = "Миссия аяқталды!";
 
   answerArea.innerHTML = `
@@ -88,12 +101,13 @@ function finishMission() {
       <b>AI feedback:</b>
       ${
         correctCount >= 4
-          ? "Сен тақырыпты жақсы меңгердің. Келесі деңгейге өт!"
+          ? "Сен тақырыпты жақсы меңгердің. Badge алдың!"
           : "Тағы бір қысқа жаттығу орындасаң, нәтижең көтеріледі."
       }
     </div>
     <br>
-    <a class="btn primary" href="planets.html">Картаға оралу</a>
+    <a class="btn primary" href="student.html">Оқушы кабинетіне оралу</a>
+    <a class="btn ghost" href="planets.html">Картаға өту</a>
   `;
 
   document.getElementById("missionButtons").style.display = "none";
