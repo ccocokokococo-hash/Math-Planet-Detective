@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Миссия</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="nebula nebula-1"></div>
+  <div class="nebula nebula-2"></div>
+
+  <header class="topbar">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">🪐</span>
+      <span>Math Planet Detective</span>
+    </a>
+
+    <nav>
+      <a href="planets.html">Планеталар</a>
+      <a href="teacher.html">Мұғалім</a>
+      <a href="progress.html">Прогресс</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <section class="mission-layout">
+
+      <div class="mission-card">
+        <div class="mission-header">
+          <div>
+            <span class="tag" id="planetLabel">Қосу планетасы</span>
+            <h1 id="missionTitle">Энергия кристалын тап</h1>
+          </div>
+
+          <div class="timer" id="timer">05:00</div>
+        </div>
+
+        <div class="question-box">
+          <div class="question-meta">
+            <span id="questionNumber">1/5</span>
+            <span id="difficulty">Easy</span>
+          </div>
+
+          <h2 id="questionText">245 + 137 = ?</h2>
+
+          <div class="answers" id="answerArea"></div>
+
+          <div class="hero-buttons" id="missionButtons">
+            <button class="btn primary" id="checkBtn">Жауапты тексеру</button>
+            <button class="btn secondary" id="hintBtn">🤖 AI hint</button>
+            <button class="btn ghost" id="nextBtn">Келесі</button>
+          </div>
+        </div>
+
+        <div class="feedback" id="feedback">
+          AI Detective сенің жауабыңды күтуде...
+        </div>
+      </div>
+
+      <aside class="detective-board">
+        <h2>🔍 Detective Board</h2>
+
+        <div id="clues">
+          <div class="clue locked">Clue 1: locked</div>
+          <div class="clue locked">Clue 2: locked</div>
+          <div class="clue locked">Clue 3: locked</div>
+          <div class="clue locked">Final code: locked</div>
+        </div>
+
+        <div class="score-box">
+          <span>Жұлдыз</span>
+          <b id="starsCount">0</b>
+        </div>
+
+        <div class="code-box">
+          <label>Құпия код</label>
+          <input type="text" id="secretCode" placeholder="40-54-25" />
+          <button class="btn primary full" id="unlockBtn">Кодты ашу</button>
+        </div>
+      </aside>
+
+    </section>
+
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/mission.js"></script>
+</body>
+</html>
