@@ -1,84 +1,561 @@
-.live-form {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Прогресс аналитикасы</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
 
-.positive {
-  color: var(--green);
-  font-weight: 900;
-}
+  <div class="nebula nebula-1"></div>
+  <div class="nebula nebula-2"></div>
 
-.negative {
-  color: #ff6b8a;
-  font-weight: 900;
-}
+  <header class="topbar">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">🪐</span>
+      <span>Math Planet Detective</span>
+    </a>
 
-.leaderboard {
-  display: grid;
-  gap: 14px;
-}
+    <nav>
+      <a href="index.html">Басты бет</a>
+      <a href="teacher.html">Мұғалім</a>
+      <a href="planets.html">Планеталар</a>
+      <a href="mission.html">Миссия</a>
+    </nav>
+  </header>
 
-.rank-card {
-  display: grid;
-  grid-template-columns: 60px 1fr 90px;
-  align-items: center;
-  gap: 16px;
-  padding: 18px;
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.09);
-  border: 1px solid var(--line);
-}
+  <main class="container">
 
-.rank-card:first-child {
-  background: linear-gradient(135deg, rgba(255, 209, 102, 0.24), rgba(255, 111, 216, 0.12));
-}
+    <section class="page-title">
+      <span class="tag">Live Progress Analytics</span>
+      <h1>Оқушылардың оқу прогресі</h1>
+      <p>
+        Бұл бетте оқушы нәтижелері real-time режимінде жаңарады.
+        Мәлімет енгізілген сайын статистика, рейтинг және кесте автоматты түрде өзгереді.
+      </p>
+    </section>
 
-.place {
-  font-size: 34px;
-}
+    <!-- REAL TIME STATS -->
+    <section class="stats-grid">
+      <div class="stat-card">
+        <span>Оқушы саны</span>
+        <b id="totalStudents">0</b>
+      </div>
 
-.rank-card p {
-  margin: 4px 0 0;
-}
+      <div class="stat-card">
+        <span>Орташа нәтиже</span>
+        <b id="averageResult">0%</b>
+      </div>
 
-.rank-card strong {
-  font-size: 26px;
-  color: var(--gold);
-  text-align: right;
-}
+      <div class="stat-card">
+        <span>Орташа өсім</span>
+        <b id="averageGrowth">0%</b>
+      </div>
 
-.mini-action {
-  border: none;
-  cursor: pointer;
-  padding: 7px 9px;
-  margin: 2px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
-}
+      <div class="stat-card">
+        <span>Жалпы жұлдыз</span>
+        <b id="totalStars">0</b>
+      </div>
+    </section>
 
-.mini-action.delete {
-  background: rgba(255, 107, 138, 0.2);
-}
+    <!-- ADD STUDENT FORM -->
+    <section class="panel">
+      <h2>Оқушы нәтижесін енгізу</h2>
 
-@media (max-width: 900px) {
-  .live-form {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+      <div class="live-form">
 
-@media (max-width: 640px) {
-  .live-form {
-    grid-template-columns: 1fr;
-  }
+        <div>
+          <label>Оқушы аты</label>
+          <input type="text" id="studentName" placeholder="Мысалы: Аружан" />
+        </div>
 
-  .rank-card {
-    grid-template-columns: 44px 1fr;
-  }
+        <div>
+          <label>Бастапқы нәтиже (%)</label>
+          <input type="number" id="beforeResult" placeholder="52" min="0" max="100" />
+        </div>
 
-  .rank-card strong {
-    grid-column: 2;
-    text-align: left;
-  }
-}
+        <div>
+          <label>Қазіргі нәтиже (%)</label>
+          <input type="number" id="afterResult" placeholder="86" min="0" max="100" />
+        </div>
+
+        <div>
+          <label>Деңгей</label>
+          <select id="studentLevel">
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Pro">Pro</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Жұлдыз саны</label>
+          <input type="number" id="studentStars" placeholder="420" min="0" />
+        </div>
+
+        <div>
+          <label>Badge саны</label>
+          <input type="number" id="studentBadges" placeholder="6" min="0" />
+        </div>
+
+        <div>
+          <label>Әлсіз тақырып</label>
+          <select id="weakTopic">
+            <option value="Қосу">Қосу</option>
+            <option value="Азайту">Азайту</option>
+            <option value="Көбейту">Көбейту</option>
+            <option value="Бөлу">Бөлу</option>
+            <option value="Логика">Логика</option>
+            <option value="Геометрия">Геометрия</option>
+            <option value="Уақыт">Уақыт</option>
+            <option value="Ақша">Ақша</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Белсенділік</label>
+          <select id="activityLevel">
+            <option value="Төмен">Төмен</option>
+            <option value="Орташа">Орташа</option>
+            <option value="Жоғары">Жоғары</option>
+            <option value="Өте жоғары">Өте жоғары</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="hero-buttons">
+        <button class="btn primary" id="addStudentBtn">➕ Нәтиже қосу</button>
+        <button class="btn secondary" id="updateLastBtn">🔄 Соңғы нәтижені жаңарту</button>
+        <button class="btn ghost" id="resetBtn">🗑 Барлығын тазалау</button>
+      </div>
+    </section>
+
+    <!-- CLASS DYNAMICS -->
+    <section class="panel">
+      <h2>Сыныптың real-time динамикасы</h2>
+
+      <div class="chart">
+        <div class="bar">
+          <span>Орташа бастапқы нәтиже</span>
+          <div><i id="beforeBar" style="width:0%"></i></div>
+          <b id="beforeAverageText">0%</b>
+        </div>
+
+        <div class="bar">
+          <span>Орташа қазіргі нәтиже</span>
+          <div><i id="afterBar" style="width:0%"></i></div>
+          <b id="afterAverageText">0%</b>
+        </div>
+
+        <div class="bar">
+          <span>Белсенділік индексі</span>
+          <div><i id="activityBar" style="width:0%"></i></div>
+          <b id="activityText">0%</b>
+        </div>
+      </div>
+    </section>
+
+    <!-- STUDENT TABLE -->
+    <section class="panel">
+      <h2>Оқушылар нәтижесі</h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>№</th>
+              <th>Оқушы</th>
+              <th>Бастапқы</th>
+              <th>Қазіргі</th>
+              <th>Өсім</th>
+              <th>Деңгей</th>
+              <th>Жұлдыз</th>
+              <th>Badge</th>
+              <th>Әлсіз тақырып</th>
+              <th>Белсенділік</th>
+              <th>AI ұсыныс</th>
+              <th>Әрекет</th>
+            </tr>
+          </thead>
+
+          <tbody id="studentsTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TOP STUDENTS -->
+    <section class="panel">
+      <h2>Ғарыш детективтері рейтингі</h2>
+
+      <div class="leaderboard" id="leaderboard">
+        <div class="ai-note">Әзірге оқушы қосылған жоқ.</div>
+      </div>
+    </section>
+
+    <!-- AI SUMMARY -->
+    <section class="panel">
+      <h2>AI қорытындысы</h2>
+
+      <div class="ai-note" id="aiSummary">
+        Оқушылар нәтижесі енгізілгеннен кейін AI қорытынды автоматты түрде шығады.
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    let students = JSON.parse(localStorage.getItem("mathPlanetStudents")) || [
+      {
+        name: "Аружан",
+        before: 54,
+        after: 84,
+        level: "Medium",
+        stars: 420,
+        badges: 6,
+        weak: "Логика",
+        activity: "Жоғары"
+      },
+      {
+        name: "Алихан",
+        before: 72,
+        after: 96,
+        level: "Pro",
+        stars: 610,
+        badges: 8,
+        weak: "Мәтіндік есеп",
+        activity: "Өте жоғары"
+      },
+      {
+        name: "Медина",
+        before: 43,
+        after: 71,
+        level: "Easy",
+        stars: 260,
+        badges: 3,
+        weak: "Бөлу",
+        activity: "Орташа"
+      }
+    ];
+
+    const studentName = document.getElementById("studentName");
+    const beforeResult = document.getElementById("beforeResult");
+    const afterResult = document.getElementById("afterResult");
+    const studentLevel = document.getElementById("studentLevel");
+    const studentStars = document.getElementById("studentStars");
+    const studentBadges = document.getElementById("studentBadges");
+    const weakTopic = document.getElementById("weakTopic");
+    const activityLevel = document.getElementById("activityLevel");
+
+    const studentsTableBody = document.getElementById("studentsTableBody");
+    const leaderboard = document.getElementById("leaderboard");
+
+    const totalStudents = document.getElementById("totalStudents");
+    const averageResult = document.getElementById("averageResult");
+    const averageGrowth = document.getElementById("averageGrowth");
+    const totalStars = document.getElementById("totalStars");
+
+    const beforeBar = document.getElementById("beforeBar");
+    const afterBar = document.getElementById("afterBar");
+    const activityBar = document.getElementById("activityBar");
+
+    const beforeAverageText = document.getElementById("beforeAverageText");
+    const afterAverageText = document.getElementById("afterAverageText");
+    const activityText = document.getElementById("activityText");
+
+    const aiSummary = document.getElementById("aiSummary");
+
+    function saveToLocalStorage() {
+      localStorage.setItem("mathPlanetStudents", JSON.stringify(students));
+    }
+
+    function getActivityScore(activity) {
+      if (activity === "Төмен") return 35;
+      if (activity === "Орташа") return 60;
+      if (activity === "Жоғары") return 80;
+      if (activity === "Өте жоғары") return 95;
+      return 50;
+    }
+
+    function getAIAdvice(student) {
+      if (student.weak === "Бөлу") {
+        return "Бөлу планетасында визуалды карточка және жұптық миссия қолдану.";
+      }
+
+      if (student.weak === "Логика") {
+        return "Логикалық қатар және құпия код тапсырмаларын көбейту.";
+      }
+
+      if (student.weak === "Көбейту") {
+        return "Көбейту кестесін ойын және таймерсіз жаттығу арқылы қайталау.";
+      }
+
+      if (student.weak === "Уақыт") {
+        return "Сағатпен интерактивті тапсырма және күндік mini mission беру.";
+      }
+
+      if (student.weak === "Ақша") {
+        return "Өмірлік есептер: дүкен, сатып алу, қайтарым ақша қолдану.";
+      }
+
+      if (student.weak === "Геометрия") {
+        return "Фигураларды drag & drop немесе визуалды карта арқылы бекіту.";
+      }
+
+      return "Easy деңгейінен бастап, AI hint арқылы біртіндеп күрделендіру.";
+    }
+
+    function renderTable() {
+      studentsTableBody.innerHTML = "";
+
+      students.forEach((student, index) => {
+        const growth = student.after - student.before;
+
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+          <td>${index + 1}</td>
+          <td><b>${student.name}</b></td>
+          <td>${student.before}%</td>
+          <td>${student.after}%</td>
+          <td class="${growth >= 0 ? "positive" : "negative"}">${growth >= 0 ? "+" : ""}${growth}%</td>
+          <td>${student.level}</td>
+          <td>${student.stars} ⭐</td>
+          <td>${student.badges} 🏅</td>
+          <td>${student.weak}</td>
+          <td>${student.activity}</td>
+          <td>${getAIAdvice(student)}</td>
+          <td>
+            <button class="mini-action" onclick="editStudent(${index})">✏️</button>
+            <button class="mini-action delete" onclick="deleteStudent(${index})">🗑</button>
+          </td>
+        `;
+
+        studentsTableBody.appendChild(row);
+      });
+    }
+
+    function renderStats() {
+      if (students.length === 0) {
+        totalStudents.textContent = "0";
+        averageResult.textContent = "0%";
+        averageGrowth.textContent = "0%";
+        totalStars.textContent = "0";
+
+        beforeBar.style.width = "0%";
+        afterBar.style.width = "0%";
+        activityBar.style.width = "0%";
+
+        beforeAverageText.textContent = "0%";
+        afterAverageText.textContent = "0%";
+        activityText.textContent = "0%";
+
+        aiSummary.textContent = "Оқушылар нәтижесі енгізілгеннен кейін AI қорытынды автоматты түрде шығады.";
+        return;
+      }
+
+      const total = students.length;
+
+      const beforeAverage = Math.round(
+        students.reduce((sum, student) => sum + student.before, 0) / total
+      );
+
+      const afterAverage = Math.round(
+        students.reduce((sum, student) => sum + student.after, 0) / total
+      );
+
+      const growthAverage = afterAverage - beforeAverage;
+
+      const starsSum = students.reduce((sum, student) => sum + student.stars, 0);
+
+      const activityAverage = Math.round(
+        students.reduce((sum, student) => sum + getActivityScore(student.activity), 0) / total
+      );
+
+      totalStudents.textContent = total;
+      averageResult.textContent = afterAverage + "%";
+      averageGrowth.textContent = "+" + growthAverage + "%";
+      totalStars.textContent = starsSum;
+
+      beforeBar.style.width = beforeAverage + "%";
+      afterBar.style.width = afterAverage + "%";
+      activityBar.style.width = activityAverage + "%";
+
+      beforeAverageText.textContent = beforeAverage + "%";
+      afterAverageText.textContent = afterAverage + "%";
+      activityText.textContent = activityAverage + "%";
+
+      generateAISummary(beforeAverage, afterAverage, growthAverage, activityAverage);
+    }
+
+    function renderLeaderboard() {
+      if (students.length === 0) {
+        leaderboard.innerHTML = `<div class="ai-note">Әзірге оқушы қосылған жоқ.</div>`;
+        return;
+      }
+
+      const sortedStudents = [...students].sort((a, b) => b.stars - a.stars);
+
+      leaderboard.innerHTML = sortedStudents.slice(0, 5).map((student, index) => {
+        let medal = "#" + (index + 1);
+
+        if (index === 0) medal = "🥇";
+        if (index === 1) medal = "🥈";
+        if (index === 2) medal = "🥉";
+
+        return `
+          <div class="rank-card">
+            <span class="place">${medal}</span>
+            <div>
+              <b>${student.name}</b>
+              <p>${student.stars} жұлдыз • ${student.badges} badge • ${student.level} деңгей</p>
+            </div>
+            <strong>${student.after}%</strong>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function generateAISummary(beforeAverage, afterAverage, growthAverage, activityAverage) {
+      let weakestTopics = {};
+
+      students.forEach(student => {
+        weakestTopics[student.weak] = (weakestTopics[student.weak] || 0) + 1;
+      });
+
+      let mostCommonWeakTopic = Object.keys(weakestTopics).sort(
+        (a, b) => weakestTopics[b] - weakestTopics[a]
+      )[0];
+
+      aiSummary.innerHTML = `
+        Сыныптың орташа нәтижесі <b>${beforeAverage}%</b>-дан <b>${afterAverage}%</b>-ға көтерілді.
+        Жалпы өсім <b>+${growthAverage}%</b>. Белсенділік индексі <b>${activityAverage}%</b>.
+        Ең жиі кездесетін қиын тақырып: <b>${mostCommonWeakTopic}</b>.
+        Келесі сабақта осы тақырыпқа арналған қысқа квест, AI hint және жұптық тапсырма қолдану ұсынылады.
+      `;
+    }
+
+    function clearForm() {
+      studentName.value = "";
+      beforeResult.value = "";
+      afterResult.value = "";
+      studentStars.value = "";
+      studentBadges.value = "";
+      studentLevel.value = "Easy";
+      weakTopic.value = "Қосу";
+      activityLevel.value = "Төмен";
+    }
+
+    function addStudent() {
+      if (
+        studentName.value.trim() === "" ||
+        beforeResult.value === "" ||
+        afterResult.value === "" ||
+        studentStars.value === "" ||
+        studentBadges.value === ""
+      ) {
+        alert("Барлық өрісті толтырыңыз.");
+        return;
+      }
+
+      const newStudent = {
+        name: studentName.value.trim(),
+        before: Number(beforeResult.value),
+        after: Number(afterResult.value),
+        level: studentLevel.value,
+        stars: Number(studentStars.value),
+        badges: Number(studentBadges.value),
+        weak: weakTopic.value,
+        activity: activityLevel.value
+      };
+
+      students.push(newStudent);
+      saveToLocalStorage();
+      renderAll();
+      clearForm();
+    }
+
+    function updateLastStudent() {
+      if (students.length === 0) {
+        alert("Жаңартатын оқушы жоқ.");
+        return;
+      }
+
+      const lastIndex = students.length - 1;
+
+      if (studentName.value.trim() !== "") {
+        students[lastIndex].name = studentName.value.trim();
+      }
+
+      if (beforeResult.value !== "") {
+        students[lastIndex].before = Number(beforeResult.value);
+      }
+
+      if (afterResult.value !== "") {
+        students[lastIndex].after = Number(afterResult.value);
+      }
+
+      if (studentStars.value !== "") {
+        students[lastIndex].stars = Number(studentStars.value);
+      }
+
+      if (studentBadges.value !== "") {
+        students[lastIndex].badges = Number(studentBadges.value);
+      }
+
+      students[lastIndex].level = studentLevel.value;
+      students[lastIndex].weak = weakTopic.value;
+      students[lastIndex].activity = activityLevel.value;
+
+      saveToLocalStorage();
+      renderAll();
+      clearForm();
+    }
+
+    function editStudent(index) {
+      const student = students[index];
+
+      studentName.value = student.name;
+      beforeResult.value = student.before;
+      afterResult.value = student.after;
+      studentLevel.value = student.level;
+      studentStars.value = student.stars;
+      studentBadges.value = student.badges;
+      weakTopic.value = student.weak;
+      activityLevel.value = student.activity;
+
+      students.splice(index, 1);
+      saveToLocalStorage();
+      renderAll();
+    }
+
+    function deleteStudent(index) {
+      students.splice(index, 1);
+      saveToLocalStorage();
+      renderAll();
+    }
+
+    function resetAll() {
+      if (confirm("Барлық нәтижені тазалайсыз ба?")) {
+        students = [];
+        saveToLocalStorage();
+        renderAll();
+      }
+    }
+
+    function renderAll() {
+      renderTable();
+      renderStats();
+      renderLeaderboard();
+    }
+
+    document.getElementById("addStudentBtn").addEventListener("click", addStudent);
+    document.getElementById("updateLastBtn").addEventListener("click", updateLastStudent);
+    document.getElementById("resetBtn").addEventListener("click", resetAll);
+
+    renderAll();
+  </script>
+
+</body>
+</html>
