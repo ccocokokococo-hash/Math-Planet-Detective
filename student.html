@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Оқушы кабинеті</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="nebula nebula-1"></div>
+  <div class="nebula nebula-2"></div>
+
+  <header class="topbar">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">🪐</span>
+      <span>Math Planet Detective</span>
+    </a>
+
+    <nav>
+      <a href="planets.html">Планеталар</a>
+      <a href="mission.html">Миссия</a>
+      <a href="progress.html">Прогресс</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <section class="student-profile-panel">
+
+      <div class="student-avatar-big" id="studentAvatar">🕵️‍♀️</div>
+
+      <div>
+        <span class="tag">Student Dashboard</span>
+        <h1 id="studentNameTitle">Оқушы</h1>
+
+        <p>
+          Сынып: <b id="studentClassText">4 А</b> •
+          Деңгей: <b id="studentLevelText">Medium</b>
+        </p>
+
+        <div class="hero-stats">
+          <div>
+            <b id="studentStarsText">0</b>
+            <span>жұлдыз</span>
+          </div>
+
+          <div>
+            <b id="studentBadgesText">0</b>
+            <span>badge</span>
+          </div>
+
+          <div>
+            <b id="studentMissionsText">0</b>
+            <span>миссия</span>
+          </div>
+        </div>
+
+        <div class="hero-buttons">
+          <a href="planets.html" class="btn primary">🪐 Планеталар картасы</a>
+          <a href="mission.html?planet=addition" class="btn secondary">➕ Бірінші миссия</a>
+          <a href="student-login.html" class="btn ghost">Профильді өзгерту</a>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="panel">
+      <h2>Бүгінгі миссия</h2>
+
+      <div class="ai-note">
+        Бүгін сен “Қосу планетасынан” бастайсың. 5 есеп шығар, 3 clue жина және құпия кодты аш.
+      </div>
+    </section>
+
+    <section class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">➕</div>
+        <h3>Қосу планетасы</h3>
+        <p>Көп таңбалы сандарды қосу.</p>
+        <a href="mission.html?planet=addition" class="btn primary">Кіру</a>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">✖️</div>
+        <h3>Көбейту планетасы</h3>
+        <p>Көбейту кестесі және мәтіндік есептер.</p>
+        <a href="mission.html?planet=multiplication" class="btn secondary">Кіру</a>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🧩</div>
+        <h3>Логика планетасы</h3>
+        <p>Қатар, заңдылық және құпия код.</p>
+        <a href="mission.html?planet=logic" class="btn ghost">Кіру</a>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">👑</div>
+        <h3>Boss Planet</h3>
+        <p>Финалдық аралас тапсырмалар.</p>
+        <a href="mission.html?planet=boss" class="btn ghost">Кіру</a>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    const profile = JSON.parse(localStorage.getItem("currentStudentProfile"));
+
+    if (!profile) {
+      window.location.href = "student-login.html";
+    } else {
+      document.getElementById("studentAvatar").textContent = profile.avatar;
+      document.getElementById("studentNameTitle").textContent = profile.name;
+      document.getElementById("studentClassText").textContent = profile.className;
+      document.getElementById("studentLevelText").textContent = profile.level;
+      document.getElementById("studentStarsText").textContent = profile.stars || 0;
+      document.getElementById("studentBadgesText").textContent = profile.badges || 0;
+      document.getElementById("studentMissionsText").textContent = profile.missions || 0;
+    }
+  </script>
+
+</body>
+</html>
